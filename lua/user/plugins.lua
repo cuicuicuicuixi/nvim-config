@@ -88,6 +88,9 @@ return packer.startup(function(use)
   use "nvim-treesitter/playground"
   use "p00f/nvim-ts-rainbow"
 
+  -- indent
+  use "lukas-reineke/indent-blankline.nvim"
+
   -- Git
   use "lewis6991/gitsigns.nvim"
 
@@ -96,6 +99,12 @@ return packer.startup(function(use)
 
   -- DashBoard
   use "glepnir/dashboard-nvim"
+
+  -- Markdown
+    use {
+        "ellisonleao/glow.nvim",
+        branch = 'main'
+    }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
