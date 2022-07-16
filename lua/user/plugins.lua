@@ -101,10 +101,10 @@ return packer.startup(function(use)
   use "glepnir/dashboard-nvim"
 
   -- Markdown
-    use {
-        "ellisonleao/glow.nvim",
-        branch = 'main'
-    }
+    -- use {
+    --     "ellisonleao/glow.nvim",
+    --     branch = 'main'
+    -- }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
