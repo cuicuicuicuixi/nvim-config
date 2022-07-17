@@ -1,8 +1,8 @@
 vim.cmd [[
 try
-  colorscheme codemonkey
+  colorscheme nightfox
 catch /^Vim\%((\a\+)\)\=:E185/
-  colorscheme codemonkey
+  colorscheme default
   --set background=dark
 endtry
 ]]

@@ -3,6 +3,13 @@ if not status_ok then
 	return
 end
 
+-- vim.cmd([[
+-- set shell=pwsh
+-- set shellcmdflag=-command
+-- set shellquote=\"
+-- set shellxquote=
+-- ]])
+
 toggleterm.setup({
 	size = 10,
 	open_mapping = [[<c-\>]],
@@ -39,11 +46,28 @@ end
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
 local Terminal = require("toggleterm.terminal").Terminal
-local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
+local lazygit = Terminal:new({
+  cmd = "lazygit",
+  dir = "git_dir",
+  direction = "float",
+  float_opts = {
+    border = "double",
+  },
+  -- function to run on opening the terminal
+  on_open = function(term)
+    vim.cmd("startinsert!")
+    vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", {noremap = true, silent = true})
+  end,
+  -- function to run on closing the terminal
+  -- on_close = function(term)
+  --   vim.cmd("Closing terminal")
+  -- end,
+})
 
 function _LAZYGIT_TOGGLE()
 	lazygit:toggle()
 end
+vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", {noremap = true, silent = true})
 
 local node = Terminal:new({ cmd = "node", hidden = true })
 

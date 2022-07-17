@@ -56,6 +56,7 @@ return packer.startup(function(use)
   -- Colorschemes
   use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
   use "lunarvim/darkplus.nvim"
+  use { "EdenEast/nightfox.nvim", tag = "v1.0.0" }
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
@@ -74,7 +75,6 @@ return packer.startup(function(use)
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
-  --[[ use {"github/copilot.vim"} ]]
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"
@@ -88,9 +88,6 @@ return packer.startup(function(use)
   use "nvim-treesitter/playground"
   use "p00f/nvim-ts-rainbow"
 
-  -- indent
-  use "lukas-reineke/indent-blankline.nvim"
-
   -- Git
   use "lewis6991/gitsigns.nvim"
 
@@ -100,12 +97,18 @@ return packer.startup(function(use)
   -- DashBoard
   use "glepnir/dashboard-nvim"
 
-  -- Markdown
-    -- use {
-    --     "ellisonleao/glow.nvim",
-    --     branch = 'main'
-    -- }
+    -- Indent-blankline
+  use "lukas-reineke/indent-blankline.nvim"
 
+  -- Markdown
+  -- use {
+  --   "ellisonleao/glow.nvim",
+  --   branch = 'main'
+  -- }
+
+    use({
+        "iamcco/markdown-preview.nvim",
+    })
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
