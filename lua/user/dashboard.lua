@@ -9,7 +9,7 @@ db.custom_center = {
       -- desc = 'Recently latest session                  ',
       -- shortcut = 'SPC s l',
       -- action ='SessionLoad'},
-      {icon = '  ',
+      {icon = '  ',
       desc = 'Book marks                              ',
       action =  'Telescope marks',
       shortcut = 'SPC f h'},
@@ -25,10 +25,10 @@ db.custom_center = {
       desc = 'Find  word                              ',
       action = 'Telescope live_grep',
       shortcut = 'SPC f w'},
-      -- {icon = '  ',
-      -- desc = 'Open Personal dotfiles                  ',
-      -- action = 'Telescope dotfiles path=' .. home ..'/.dotfiles',
-      -- shortcut = 'SPC f d'},
+      {icon = '  ',
+      desc = 'config                                  ',
+      action = 'Telescope find_files path=' .. home ..'/.config/nvim',
+      shortcut = 'SPC f d'},
 }
 
 db.default_executive = 'telescope'
