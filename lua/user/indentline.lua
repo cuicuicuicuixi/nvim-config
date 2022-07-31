@@ -3,7 +3,7 @@ if not status_ok then
     return
 end
 
-vim.cmd[[highlight IndentBlanklineContextChar guifg=#56B6C2 gui=nocombine]]
+-- vim.cmd[[highlight IndentBlanklineContextChar guifg=#56B6C2 gui=nocombine]]
 
 vim.opt.list = true
 
