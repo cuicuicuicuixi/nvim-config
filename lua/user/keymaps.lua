@@ -76,3 +76,15 @@ keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
 
 -- Tagbar
 keymap("n", "<F8>", ":TagbarToggle<CR>", opts)
+
+
+-- Tabby
+keymap("n", "<leader>ta", ":$tabnew<CR>", opts)
+keymap("n", "<leader>tc", ":tabclose<CR>", opts)
+keymap("n", "<leader>to", ":tabonly<CR>", opts)
+keymap("n", "<leader>tn", ":tabn<CR>", opts)
+keymap("n", "<leader>tp", ":tabp<CR>", opts)
+-- move current tab to previous position
+keymap("n", "<leader>tmp", ":-tabmove<CR>", opts)
+-- move current tab to next position
+keymap("n", "<leader>tmn", ":+tabmove<CR>", opts)

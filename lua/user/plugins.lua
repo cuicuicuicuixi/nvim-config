@@ -95,6 +95,7 @@ return packer.startup(function(use)
 
     -- Tagbar
     use "preservim/tagbar"
+    use "nanozuki/tabby.nvim"
 
     -- Winbar, Statusline
     use {
