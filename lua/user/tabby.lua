@@ -220,6 +220,7 @@ local status_ok, tabby = pcall(require, "tabby")
 
 if not status_ok then
     vim.notify"plugin tabby set fail"
+    return
 end
 
 tabby.setup{
