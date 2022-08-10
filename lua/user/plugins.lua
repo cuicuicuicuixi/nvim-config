@@ -78,6 +78,7 @@ return packer.startup(function(use)
     use "williamboman/nvim-lsp-installer" -- simple to use language server installer
     use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
     use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
+    use "lvimuser/lsp-inlayhints.nvim"
 
     -- Telescope
     use "nvim-telescope/telescope.nvim"
@@ -121,6 +122,18 @@ return packer.startup(function(use)
     })
 
     use "rcarriga/nvim-notify"
+
+
+    -- Debug
+    -- use "ravenxrz/DAPInstall.nvim"
+    -- use 'mfussenegger/nvim-dap'
+    -- use "rcarriga/nvim-dap-ui"
+
+
+    -- Editing Support
+    use "folke/zen-mode.nvim"
+    use "folke/twilight.nvim"
+
 
 
     -- Automatically set up your configuration after cloning packer.nvim

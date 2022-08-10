@@ -50,6 +50,9 @@ vim.notify = function(msg, ...)
   if msg:match "character_offset must be called" then
     return
   end
+  if msg:match "method textDocument" then
+    return
+  end
 
   notify_filter(msg, ...)
 end
