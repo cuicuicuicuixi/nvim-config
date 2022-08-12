@@ -4,32 +4,41 @@ if not status_ok then
 end
 
 local home = os.getenv('HOME')
-vim.notify"home"
+vim.notify "home"
 db.custom_center = {
-      -- {icon = '  ',
-      -- desc = 'Recently latest session                  ',
-      -- shortcut = 'SPC s l',
-      -- action ='SessionLoad'},
-      {icon = '  ',
-      desc = 'Book marks                              ',
-      action =  'Telescope marks',
-      shortcut = 'SPC f h'},
-      {icon = '  ',
-      desc = 'Find  File                              ',
-      action = 'Telescope find_files',
-      shortcut = 'SPC f f'},
-      -- {icon = '  ',
-      -- desc ='File Browser                            ',
-      -- action =  'Telescope file_browser',
-      -- shortcut = 'SPC f b'},
-      {icon = '  ',
-      desc = 'Find  word                              ',
-      action = 'Telescope live_grep',
-      shortcut = 'SPC f w'},
-      {icon = '  ',
-      desc = 'config                                  ',
-      action = 'Telescope find_files path=' .. home ..'/.config/nvim',
-      shortcut = 'SPC f d'},
+    {
+        icon = '  ',
+        desc = 'Recently files              ',
+        action = 'Telescope oldfiles'
+    },
+    {
+        icon = '  ',
+        desc = 'Book marks                  ',
+        action = 'Telescope marks',
+    },
+    {
+        icon = '  ',
+        desc = 'Find  File                  ',
+        action = 'Telescope find_files',
+    },
+    -- {icon = '  ',
+    -- desc ='File Browser                            ',
+    -- action =  'Telescope file_browser',
+    -- shortcut = 'SPC f b'},
+    { icon = '  ',
+        desc = 'Find  word                  ',
+        action = 'Telescope live_grep',
+    },
+    {
+        icon = '  ',
+        desc = 'config                      ',
+        action = 'e ~/.config/nvim/init.lua',
+    },
+    {
+        icon = '  ',
+        desc = 'quit                        ',
+        action = 'qa',
+    }
 }
 
 db.default_executive = 'telescope'
@@ -53,26 +62,26 @@ db.default_executive = 'telescope'
 -- }
 
 db.custom_header = {
-[[]],
-[[]],
-[[]],
-[[]],
-[[]],
-[[]],
-[[]],
-[[]],
-[[]],
+    [[]],
+    [[]],
+    [[]],
+    [[]],
+    [[]],
+    [[]],
+    [[]],
+    [[]],
+    [[]],
 
-[[███████╗██╗  ██╗ █████╗ ███╗   ██╗ ██████╗     ██╗    ██╗███████╗██╗███████╗███████╗███╗   ██╗ ██████╗ ]],
-[[╚══███╔╝██║  ██║██╔══██╗████╗  ██║██╔════╝     ██║    ██║██╔════╝██║██╔════╝██╔════╝████╗  ██║██╔════╝ ]],
-[[  ███╔╝ ███████║███████║██╔██╗ ██║██║  ███╗    ██║ █╗ ██║█████╗  ██║█████╗  █████╗  ██╔██╗ ██║██║  ███╗]],
-[[ ███╔╝  ██╔══██║██╔══██║██║╚██╗██║██║   ██║    ██║███╗██║██╔══╝  ██║██╔══╝  ██╔══╝  ██║╚██╗██║██║   ██║]],
-[[███████╗██║  ██║██║  ██║██║ ╚████║╚██████╔╝    ╚███╔███╔╝███████╗██║██║     ███████╗██║ ╚████║╚██████╔╝]],
-[[╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝      ╚══╝╚══╝ ╚══════╝╚═╝╚═╝     ╚══════╝╚═╝  ╚═══╝ ╚═════╝ ]],
-[[]],[[]],
-[[]],[[]],
+    [[███████╗██╗  ██╗ █████╗ ███╗   ██╗ ██████╗     ██╗    ██╗███████╗██╗███████╗███████╗███╗   ██╗ ██████╗ ]],
+    [[╚══███╔╝██║  ██║██╔══██╗████╗  ██║██╔════╝     ██║    ██║██╔════╝██║██╔════╝██╔════╝████╗  ██║██╔════╝ ]],
+    [[  ███╔╝ ███████║███████║██╔██╗ ██║██║  ███╗    ██║ █╗ ██║█████╗  ██║█████╗  █████╗  ██╔██╗ ██║██║  ███╗]],
+    [[ ███╔╝  ██╔══██║██╔══██║██║╚██╗██║██║   ██║    ██║███╗██║██╔══╝  ██║██╔══╝  ██╔══╝  ██║╚██╗██║██║   ██║]],
+    [[███████╗██║  ██║██║  ██║██║ ╚████║╚██████╔╝    ╚███╔███╔╝███████╗██║██║     ███████╗██║ ╚████║╚██████╔╝]],
+    [[╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝      ╚══╝╚══╝ ╚══════╝╚═╝╚═╝     ╚══════╝╚═╝  ╚═══╝ ╚═════╝ ]],
+    [[]], [[]],
+    [[]], [[]],
 
 
 }
 
-vim.g.dashboard_custom_footer = {'aaaaaaaaa'}
+vim.g.dashboard_custom_footer = { 'aaaaaaaaa' }

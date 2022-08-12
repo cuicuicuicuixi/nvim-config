@@ -1,6 +1,6 @@
 vim.cmd [[
 try
-  colorscheme tokyonight
+  colorscheme kanagawa
   " set background=dark
   " highlight Normal guibg=NONE ctermbg=None
 catch /^Vim\%((\a\+)\)\=:E185/

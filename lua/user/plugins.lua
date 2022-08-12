@@ -60,6 +60,7 @@ return packer.startup(function(use)
     use { "EdenEast/nightfox.nvim" }
     use 'folke/tokyonight.nvim'
     use "lunarvim/synthwave84.nvim"
+    use "rebelot/kanagawa.nvim"
 
     -- cmp plugins
     use "hrsh7th/nvim-cmp" -- The completion plugin
@@ -83,7 +84,7 @@ return packer.startup(function(use)
     -- Telescope
     use "nvim-telescope/telescope.nvim"
 
-    -- Treesitter
+    -- Syntax/Treesitter
     use {
         "nvim-treesitter/nvim-treesitter",
         run = ":TSUpdate",
@@ -91,6 +92,7 @@ return packer.startup(function(use)
     use "JoosepAlviste/nvim-ts-context-commentstring"
     use "nvim-treesitter/playground"
     use "p00f/nvim-ts-rainbow"
+    use "kylechui/nvim-surround"
 
     -- Git
     use "lewis6991/gitsigns.nvim"
@@ -129,10 +131,13 @@ return packer.startup(function(use)
     -- use 'mfussenegger/nvim-dap'
     -- use "rcarriga/nvim-dap-ui"
 
+    -- Motion
+    use "phaazon/hop.nvim"
 
     -- Editing Support
     use "folke/zen-mode.nvim"
     use "folke/twilight.nvim"
+    -- use 'karb94/neoscroll.nvim'
 
 
 

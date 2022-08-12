@@ -25,7 +25,7 @@ zen_mode.setup {
   plugins = {
     gitsigns = { enabled = false },
     tmux = { enabled = false },
-    twilight = { enabled = true }, -- enable to start Twilight when zen mode opens
+    twilight = { enabled = false }, -- enable to start Twilight when zen mode opens
   },
   on_open = function()
     require("lsp-inlayhints").toggle()

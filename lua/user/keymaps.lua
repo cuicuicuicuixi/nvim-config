@@ -19,6 +19,13 @@ vim.g.maplocalleader = " "
 --   command_mode = "c",
 
 -- Normal --
+-- Close window
+keymap("n", "<C-s>", ":w<CR>", opts)
+keymap("n", "<C-ss>", ":wa<CR>", opts)
+keymap("n", "<C-d>", ":q<CR>", opts)
+keymap("n", "<C-dd>", ":qa<CR>", opts)
+
+
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
