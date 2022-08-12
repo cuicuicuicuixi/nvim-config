@@ -139,6 +139,14 @@ return packer.startup(function(use)
     use "folke/twilight.nvim"
     -- use 'karb94/neoscroll.nvim'
 
+    -- Quick Fix
+    use {'kevinhwang91/nvim-bqf'}
+
+    -- Project
+    use "ahmedkhalf/project.nvim"
+
+    -- Code Runner
+    use "is0n/jaq-nvim"
 
 
     -- Automatically set up your configuration after cloning packer.nvim

@@ -4,8 +4,8 @@ if not status_ok then
     return
 end
 
-colorizer.setup (
-    {"*"},
+colorizer.setup(
+    { "*" },
     {
         RGB      = true; -- #RGB hex codes
         RRGGBB   = true; -- #RRGGBB hex codes
