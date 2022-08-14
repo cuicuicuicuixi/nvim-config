@@ -1,157 +1,174 @@
 local fn = vim.fn
 
 -- Automatically install packer
-local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
+local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
-    PACKER_BOOTSTRAP = fn.system {
-        "git",
-        "clone",
-        "--depth",
-        "1",
-        "https://github.com/wbthomason/packer.nvim",
-        install_path,
-    }
-    print "Installing packer close and reopen Neovim..."
-    vim.cmd [[packadd packer.nvim]]
+	PACKER_BOOTSTRAP = fn.system({
+		"git",
+		"clone",
+		"--depth",
+		"1",
+		"https://github.com/wbthomason/packer.nvim",
+		install_path,
+	})
+	print("Installing packer close and reopen Neovim...")
+	vim.cmd([[packadd packer.nvim]])
 end
 
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd [[
+vim.cmd([[
   augroup packer_user_config
     autocmd!
     autocmd BufWritePost plugins.lua source <afile> | PackerSync
   augroup end
-]]
+]])
 
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
-    return
+	return
 end
 
 -- Have packer use a popup window
-packer.init {
-    display = {
-        open_fn = function()
-            return require("packer.util").float { border = "rounded" }
-        end,
-    },
-}
+packer.init({
+	display = {
+		open_fn = function()
+			return require("packer.util").float({ border = "rounded" })
+		end,
+	},
+})
 
 -- Install your plugins here
 return packer.startup(function(use)
-    -- My plugins here
-    use "wbthomason/packer.nvim" -- Have packer manage itself
-    use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
-    use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
-    use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
-    use "numToStr/Comment.nvim" -- Easily comment stuff
-    use "kyazdani42/nvim-web-devicons"
-    use "kyazdani42/nvim-tree.lua"
-    -- use "akinsho/bufferline.nvim"
-    use "moll/vim-bbye"
-    use 'nvim-lualine/lualine.nvim'
-    use "akinsho/toggleterm.nvim"
-    use "norcalli/nvim-colorizer.lua"
+	-- My plugins here
+	use("wbthomason/packer.nvim") -- Have packer manage itself
+	use("nvim-lua/popup.nvim") -- An implementation of the Popup API from vim in Neovim
+	use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
+	use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter
+	use("numToStr/Comment.nvim") -- Easily comment stuff
+	use("kyazdani42/nvim-web-devicons")
+	use("kyazdani42/nvim-tree.lua")
+	-- use "akinsho/bufferline.nvim"
+	use("nvim-lualine/lualine.nvim")
+	use("akinsho/toggleterm.nvim")
+	use("norcalli/nvim-colorizer.lua")
 
-    -- Colorschemes
-    use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
-    use "lunarvim/darkplus.nvim"
-    use { "EdenEast/nightfox.nvim" }
-    use 'folke/tokyonight.nvim'
-    use "lunarvim/synthwave84.nvim"
-    use "rebelot/kanagawa.nvim"
+	-- Colorschemes
+	use("lunarvim/colorschemes") -- A bunch of colorschemes you can try out
+	use("lunarvim/darkplus.nvim")
+	use("lunarvim/onedarker.nvim")
+	use({ "EdenEast/nightfox.nvim" })
+	use("folke/tokyonight.nvim")
+	use("lunarvim/synthwave84.nvim")
+	use("rebelot/kanagawa.nvim")
 
-    -- cmp plugins
-    use "hrsh7th/nvim-cmp" -- The completion plugin
-    use "hrsh7th/cmp-buffer" -- buffer completions
-    use "hrsh7th/cmp-path" -- path completions
-    use "hrsh7th/cmp-cmdline" -- cmdline completions
-    use "saadparwaiz1/cmp_luasnip" -- snippet completions
-    use "hrsh7th/cmp-nvim-lsp"
+	-- cmp plugins
+	use("hrsh7th/nvim-cmp") -- The completion plugin
+	use("hrsh7th/cmp-buffer") -- buffer completions
+	use("hrsh7th/cmp-path") -- path completions
+	use("hrsh7th/cmp-cmdline") -- cmdline completions
+	use("saadparwaiz1/cmp_luasnip") -- snippet completions
+	use("hrsh7th/cmp-nvim-lsp")
 
-    -- snippets
-    use "L3MON4D3/LuaSnip" --snippet engine
-    use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
+	-- snippets
+	use("L3MON4D3/LuaSnip") --snippet engine
+	use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
 
-    -- LSP
-    use "neovim/nvim-lspconfig" -- enable LSP
-    use "williamboman/nvim-lsp-installer" -- simple to use language server installer
-    use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
-    use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
-    use "lvimuser/lsp-inlayhints.nvim"
+	-- LSP
+	use("neovim/nvim-lspconfig") -- enable LSP
+	use("williamboman/nvim-lsp-installer") -- simple to use language server installer
+	use("tamago324/nlsp-settings.nvim") -- language server settings defined in json for
+	use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
+	use("lvimuser/lsp-inlayhints.nvim")
 
-    -- Telescope
-    use "nvim-telescope/telescope.nvim"
+	-- Telescope
+	use("nvim-telescope/telescope.nvim")
 
-    -- Syntax/Treesitter
-    use {
-        "nvim-treesitter/nvim-treesitter",
-        run = ":TSUpdate",
-    }
-    use "JoosepAlviste/nvim-ts-context-commentstring"
-    use "nvim-treesitter/playground"
-    use "p00f/nvim-ts-rainbow"
-    use "kylechui/nvim-surround"
+	-- Syntax/Treesitter
+	use({
+		"nvim-treesitter/nvim-treesitter",
+		run = ":TSUpdate",
+	})
+	use("JoosepAlviste/nvim-ts-context-commentstring")
+	use("nvim-treesitter/playground")
+	use("p00f/nvim-ts-rainbow")
+	use("kylechui/nvim-surround")
 
-    -- Git
-    use "lewis6991/gitsigns.nvim"
+	-- Git
+	use("lewis6991/gitsigns.nvim")
 
-    -- Tagbar
-    use "preservim/tagbar"
-    use "nanozuki/tabby.nvim"
+	-- Tagbar
+	use("preservim/tagbar")
+	use("nanozuki/tabby.nvim")
 
-    -- Winbar, Statusline
-    use {
-        "SmiteshP/nvim-navic",
-        requires = "neovim/nvim-lspconfig"
-    }
+	-- Winbar, Statusline
+	use({
+		"SmiteshP/nvim-navic",
+		requires = "neovim/nvim-lspconfig",
+	})
 
-    -- DashBoard
-    use "glepnir/dashboard-nvim"
+	-- DashBoard
+	use("glepnir/dashboard-nvim")
 
-    -- Indent-blankline
-    use "lukas-reineke/indent-blankline.nvim"
+	-- Indent-blankline
+	use("lukas-reineke/indent-blankline.nvim")
 
-    -- Markdown
-    -- use {
-    --   "ellisonleao/glow.nvim",
-    --   branch = 'main'
-    -- }
+	-- Markdown
+	-- use {
+	--   "ellisonleao/glow.nvim",
+	--   branch = 'main'
+	-- }
 
-    use({
-        "iamcco/markdown-preview.nvim",
-    })
+	use({
+		"iamcco/markdown-preview.nvim",
+	})
 
-    use "rcarriga/nvim-notify"
+	-- Utility
+	use("stevearc/dressing.nvim") -- 匹配 neovim API
+	use("rcarriga/nvim-notify")
+	use("lewis6991/impatient.nvim") -- 加速 neovim 加载 lua 模块
+	use("ghillb/cybu.nvim") -- 切换缓冲区
+	use("moll/vim-bbye") -- 关闭缓冲区但不关闭窗口
 
+	-- Debug
+	-- use "ravenxrz/DAPInstall.nvim"
+	-- use 'mfussenegger/nvim-dap'
+	-- use "rcarriga/nvim-dap-ui"
 
-    -- Debug
-    -- use "ravenxrz/DAPInstall.nvim"
-    -- use 'mfussenegger/nvim-dap'
-    -- use "rcarriga/nvim-dap-ui"
+	-- Motion
+	use("phaazon/hop.nvim")
 
-    -- Motion
-    use "phaazon/hop.nvim"
+	-- Editing Support
+	use("folke/zen-mode.nvim")
+	use("folke/twilight.nvim")
+	use("junegunn/vim-slash")
+	use("andymass/vim-matchup")
+	-- use 'karb94/neoscroll.nvim'
+	use({
+		"filipdutescu/renamer.nvim",
+		branch = "master",
+		requires = { { "nvim-lua/plenary.nvim" } },
+	})
 
-    -- Editing Support
-    use "folke/zen-mode.nvim"
-    use "folke/twilight.nvim"
-    -- use 'karb94/neoscroll.nvim'
+	-- Quick Fix
+	use({ "kevinhwang91/nvim-bqf" })
 
-    -- Quick Fix
-    use {'kevinhwang91/nvim-bqf'}
+	-- Project
+	use("ahmedkhalf/project.nvim")
+	use("windwp/nvim-spectre")
 
-    -- Project
-    use "ahmedkhalf/project.nvim"
+	-- Code Runner
+	use("is0n/jaq-nvim")
 
-    -- Code Runner
-    use "is0n/jaq-nvim"
+	-- Keybinding
+	use("folke/which-key.nvim")
 
+	-- Note Taking
+	use("mickael-menu/zk-nvim")
 
-    -- Automatically set up your configuration after cloning packer.nvim
-    -- Put this at the end after all plugins
-    if PACKER_BOOTSTRAP then
-        require("packer").sync()
-    end
+	-- Automatically set up your configuration after cloning packer.nvim
+	-- Put this at the end after all plugins
+	if PACKER_BOOTSTRAP then
+		require("packer").sync()
+	end
 end)

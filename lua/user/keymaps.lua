@@ -76,7 +76,7 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
 -- Telescope
 keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
-keymap("n", "<leader>ww", ":Telescope live_grep<CR>", opts)
+keymap("n", "<leader>fw", ":Telescope live_grep<CR>", opts)
 
 
 -- Nvimtree
@@ -84,6 +84,7 @@ keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
 
 keymap("n", "<F4>", "<cmd>Telescope resume<cr>", opts)
 keymap("n", "<F5>", "<cmd>Telescope commands<CR>", opts)
+keymap("n", "<F6>", "<cmd>Telescope projects<CR>", opts)
 keymap("n", "<F7>", "<cmd>TSHighlightCapturesUnderCursor<cr>", opts)
 -- Tagbar
 keymap("n", "<F8>", ":TagbarToggle<CR>", opts)
@@ -91,6 +92,7 @@ keymap("n", "<F10>", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 keymap("n", "<F12>", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
 keymap("n", "<C-t>", "<cmd>lua vim.lsp.buf.document_symbol()<cr>", opts)
 
+keymap("n", "gp", "<cmd>lua require('goto-preview').goto_preview_definition()<CR>", opts)
 
 keymap("n", "<C-z>", "<cmd>ZenMode<cr>", opts)
 
