@@ -19,12 +19,6 @@ vim.g.maplocalleader = " "
 --   command_mode = "c",
 
 -- Normal --
--- Close window
-keymap("n", "<C-s>", ":w<CR>", opts)
-keymap("n", "<C-ss>", ":wa<CR>", opts)
-keymap("n", "<C-d>", ":q<CR>", opts)
-keymap("n", "<C-dd>", ":qa<CR>", opts)
-
 
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
@@ -96,6 +90,7 @@ keymap("n", "gp", "<cmd>lua require('goto-preview').goto_preview_definition()<CR
 
 keymap("n", "<C-z>", "<cmd>ZenMode<cr>", opts)
 
+keymap("n", "<c-a>", "<cmd>lua require('lsp_lines').toggle()<cr>", opts)
 
 -- Tabby
 keymap("n", "<leader>ta", ":$tabnew<CR>", opts)

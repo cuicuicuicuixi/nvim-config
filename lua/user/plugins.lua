@@ -80,6 +80,7 @@ return packer.startup(function(use)
 	use("tamago324/nlsp-settings.nvim") -- language server settings defined in json for
 	use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
 	use("lvimuser/lsp-inlayhints.nvim")
+	use("https://git.sr.ht/~whynothugo/lsp_lines.nvim")
 
 	-- Telescope
 	use("nvim-telescope/telescope.nvim")
