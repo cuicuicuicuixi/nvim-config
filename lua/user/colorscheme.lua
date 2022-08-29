@@ -1,6 +1,6 @@
 vim.cmd [[
 try
-  colorscheme kanagawa
+  colorscheme synthwave84
   " set background=dark
   " highlight Normal guibg=NONE ctermbg=None
 catch /^Vim\%((\a\+)\)\=:E185/
