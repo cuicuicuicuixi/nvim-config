@@ -110,7 +110,7 @@ end
 
 M.on_attach = function(client, bufnr)
 	if client.name == "tsserver" then
-		require("lsp-inlayhints").on_attach(bufnr, client)
+		require("lsp-inlayhints").on_attach(client, bufnr)
 	end
 	lsp_keymaps(bufnr)
 	lsp_highlight_document(client)
