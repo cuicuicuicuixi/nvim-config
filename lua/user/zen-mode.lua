@@ -5,7 +5,7 @@ end
 
 zen_mode.setup {
     window = {
-        backdrop = 0.9, -- 遮蔽禅窗的背景。设置为 1 保持与 Normal 相同
+        backdrop = 1, -- 遮蔽禅窗的背景。设置为 1 保持与 Normal 相同
         -- 高度和宽度可以是：
         -- * > 1 时的绝对单元数
         -- * <= 1时编辑器宽度/高度的百分比

@@ -104,11 +104,6 @@ _G.packer_plugins = {
     path = "/home/zwf/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
-  colorschemes = {
-    loaded = true,
-    path = "/home/zwf/.local/share/nvim/site/pack/packer/start/colorschemes",
-    url = "https://github.com/lunarvim/colorschemes"
-  },
   ["cybu.nvim"] = {
     loaded = true,
     path = "/home/zwf/.local/share/nvim/site/pack/packer/start/cybu.nvim",
@@ -328,6 +323,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/zwf/.local/share/nvim/site/pack/packer/start/tagbar",
     url = "https://github.com/preservim/tagbar"
+  },
+  ["telescope-media-files.nvim"] = {
+    loaded = true,
+    path = "/home/zwf/.local/share/nvim/site/pack/packer/start/telescope-media-files.nvim",
+    url = "https://github.com/nvim-telescope/telescope-media-files.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,

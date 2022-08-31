@@ -57,13 +57,14 @@ return packer.startup(function(use)
 	use("sunjon/shade.nvim")
 
 	-- Colorschemes
-	use("lunarvim/colorschemes") -- A bunch of colorschemes you can try out
+	--[[ use("lunarvim/colorschemes") -- A bunch of colorschemes you can try out ]]
 	use("lunarvim/darkplus.nvim")
 	use("lunarvim/onedarker.nvim")
-	use({ "EdenEast/nightfox.nvim" })
+	use("EdenEast/nightfox.nvim")
 	use("folke/tokyonight.nvim")
 	use("lunarvim/synthwave84.nvim")
 	use("rebelot/kanagawa.nvim")
+	--[[ use("Mofiqul/dracula.nvim") ]]
 
 	-- cmp plugins
 	use("hrsh7th/nvim-cmp") -- The completion plugin
@@ -87,6 +88,7 @@ return packer.startup(function(use)
 
 	-- Telescope
 	use("nvim-telescope/telescope.nvim")
+	--[[ use("nvim-telescope/telescope-media-files.nvim") ]]
 
 	-- Syntax/Treesitter
 	use({

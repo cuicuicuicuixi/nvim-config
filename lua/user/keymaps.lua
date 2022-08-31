@@ -19,6 +19,8 @@ vim.g.maplocalleader = " "
 --   command_mode = "c",
 
 -- Normal --
+-- Close buffer without close window
+keymap("n", "<C-d>", "<cmd>Bdelete<CR>", opts)
 
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
