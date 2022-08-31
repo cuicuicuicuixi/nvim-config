@@ -309,6 +309,11 @@ _G.packer_plugins = {
     path = "/home/zwf/.local/share/nvim/site/pack/packer/start/renamer.nvim",
     url = "https://github.com/filipdutescu/renamer.nvim"
   },
+  ["shade.nvim"] = {
+    loaded = true,
+    path = "/home/zwf/.local/share/nvim/site/pack/packer/start/shade.nvim",
+    url = "https://github.com/sunjon/shade.nvim"
+  },
   ["synthwave84.nvim"] = {
     loaded = true,
     path = "/home/zwf/.local/share/nvim/site/pack/packer/start/synthwave84.nvim",

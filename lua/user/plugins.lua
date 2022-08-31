@@ -51,7 +51,10 @@ return packer.startup(function(use)
 	-- use "akinsho/bufferline.nvim"
 	use("nvim-lualine/lualine.nvim")
 	use("akinsho/toggleterm.nvim")
+
+	-- Color
 	use("norcalli/nvim-colorizer.lua")
+	use("sunjon/shade.nvim")
 
 	-- Colorschemes
 	use("lunarvim/colorschemes") -- A bunch of colorschemes you can try out
