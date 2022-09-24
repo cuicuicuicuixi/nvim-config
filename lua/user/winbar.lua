@@ -45,11 +45,9 @@ M.get_filename = function()
         vim.api.nvim_set_hl(0, hl_group, { fg = file_icon_color })
         if f.isempty(file_icon) then
             file_icon = ""
-            --[[ file_icon_color = "" ]]
         end
 
         local navic_text = vim.api.nvim_get_hl_by_name("Normal", true)
-        --[[ vim.api.nvim_set_hl(0, "Winbar", { fg = "#6b737f" }) ]]
         vim.api.nvim_set_hl(0, "Winbar", { fg = navic_text.foreground })
 
         return " " .. "%#" .. hl_group .. "#" .. file_icon .. "%*" .. " " .. "%#Winbar#" .. filename .. "%*"
