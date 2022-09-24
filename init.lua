@@ -43,5 +43,5 @@ require "user.vim-slash"
 require "user.spectre"
 require "user.whichkey"
 require "user.renamer"
-require "user.shade"
+--[[ require "user.shade" ]]
 require "user.markdown-preview"
