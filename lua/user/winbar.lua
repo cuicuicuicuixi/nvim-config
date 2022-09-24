@@ -45,9 +45,12 @@ M.get_filename = function()
         vim.api.nvim_set_hl(0, hl_group, { fg = file_icon_color })
         if f.isempty(file_icon) then
             file_icon = ""
-            file_icon_color = ""
+            --[[ file_icon_color = "" ]]
         end
-        vim.api.nvim_set_hl(0, "Winbar", { fg = "#6b737f" })
+
+        local navic_text = vim.api.nvim_get_hl_by_name("Normal", true)
+        --[[ vim.api.nvim_set_hl(0, "Winbar", { fg = "#6b737f" }) ]]
+        vim.api.nvim_set_hl(0, "Winbar", { fg = navic_text.foreground })
 
         return " " .. "%#" .. hl_group .. "#" .. file_icon .. "%*" .. " " .. "%#Winbar#" .. filename .. "%*"
     end
@@ -77,7 +80,7 @@ end
 
 local excludes = function()
     if vim.tbl_contains(M.winbar_filetype_exclude, vim.bo.filetype) then
-        vim.opt_local.winbar = nil
+        --[[ vim.opt_local.winbar = nil ]]
         return true
     end
     return false

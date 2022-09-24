@@ -3,7 +3,7 @@ require "user.options"
 require "user.keymaps"
 require "user.plugins"
 require "user.autocommands"
-require "user.nightfox"
+--[[ require "user.nightfox" ]]
 require "user.colorscheme"
 require "user.icons"
 require "user.cmp"
