@@ -44,11 +44,9 @@ return packer.startup(function(use)
 	use("wbthomason/packer.nvim") -- Have packer manage itself
 	use("nvim-lua/popup.nvim") -- An implementation of the Popup API from vim in Neovim
 	use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
-    use "christianchiarulli/lua-dev.nvim"
-
+	use("christianchiarulli/lua-dev.nvim")
 
 	use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter
-	use("numToStr/Comment.nvim") -- Easily comment stuff
 	use("kyazdani42/nvim-web-devicons")
 	use("kyazdani42/nvim-tree.lua")
 	-- use "akinsho/bufferline.nvim"
@@ -84,24 +82,44 @@ return packer.startup(function(use)
 	-- LSP
 	use("neovim/nvim-lspconfig") -- enable LSP
 	--[[ use("williamboman/nvim-lsp-installer") -- simple to use language server nvim-lsp-installer ]]
-    use( "williamboman/mason.nvim")
-    use("williamboman/mason-lspconfig.nvim")
+	use("williamboman/mason.nvim")
+	use("williamboman/mason-lspconfig.nvim")
 	use("tamago324/nlsp-settings.nvim") -- language server settings defined in json for
 	use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
-    use "ray-x/lsp_signature.nvim"
+	use("ray-x/lsp_signature.nvim")
 	use("lvimuser/lsp-inlayhints.nvim")
 	use("https://git.sr.ht/~whynothugo/lsp_lines.nvim")
+	use({
+		"folke/trouble.nvim",
+		requires = "kyazdani42/nvim-web-devicons",
+	})
 
 	-- Telescope
 	use("nvim-telescope/telescope.nvim")
 	--[[ use("nvim-telescope/telescope-media-files.nvim") ]]
 
 	-- Syntax/Treesitter
-	use({ "nvim-treesitter/nvim-treesitter"})
+	use({ "nvim-treesitter/nvim-treesitter" })
 	use("JoosepAlviste/nvim-ts-context-commentstring")
 	use("nvim-treesitter/playground")
 	use("p00f/nvim-ts-rainbow")
 	use("kylechui/nvim-surround")
+
+	-- Comment
+	use("numToStr/Comment.nvim") -- Easily comment stuff
+	use({
+		"danymat/neogen",
+		requires = "nvim-treesitter/nvim-treesitter",
+	})
+	use("folke/lsp-colors.nvim")
+	use({
+		"folke/todo-comments.nvim",
+		requires = "nvim-lua/plenary.nvim",
+	})
+
+	-- Session
+	use("rmagatti/auto-session")
+	use("rmagatti/session-lens")
 
 	-- Git
 	use("lewis6991/gitsigns.nvim")

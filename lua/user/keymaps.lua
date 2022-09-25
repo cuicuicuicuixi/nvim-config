@@ -73,6 +73,7 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 -- Telescope
 keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
 keymap("n", "<leader>fw", ":Telescope live_grep<CR>", opts)
+keymap("n", "<leader>ks", ":Telescope session-lens search_session<CR>", opts)
 
 
 -- Nvimtree
