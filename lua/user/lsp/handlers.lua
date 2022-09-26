@@ -1,3 +1,4 @@
+---@diagnostic disable: missing-parameter
 local M = {}
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -78,9 +79,9 @@ local function lsp_keymaps(bufnr)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", "<cmd>Telescope lsp_implementation()<CR>", opts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", ":Telescope lsp_implementations<CR>", opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", "<cmd>Telescope lsp_references()<CR>", opts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", ":Telescope lsp_references<CR>", opts)
 	vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format({ async = true })' ]])
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "<S-f>", "<cmd>Format<cr>", opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "A", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)

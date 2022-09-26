@@ -167,7 +167,7 @@ local line = {
 	layout = "active_wins_at_tail",
 	head = {
 		{ cwd, hl = "UserTLHead" },
-		{ "", hl = "UserTLHeadSep" },
+		--[[ { "", hl = "UserTLHeadSep" }, ]]
 	},
 	active_tab = {
 		label = function(tabid)
@@ -176,8 +176,8 @@ local line = {
 				hl = "UserTLActive",
 			}
 		end,
-		left_sep = { "", hl = "UserTLActiveSep" },
-		right_sep = { "", hl = "UserTLActiveSep" },
+		--[[ left_sep = { "", hl = "UserTLActiveSep" }, ]]
+		--[[ right_sep = { "", hl = "UserTLActiveSep" }, ]]
 	},
 	inactive_tab = {
 		label = function(tabid)
@@ -186,8 +186,8 @@ local line = {
 				hl = "UserTLBoldLine",
 			}
 		end,
-		left_sep = { "", hl = "UserTLLineSep" },
-		right_sep = { "", hl = "UserTLLineSep" },
+		--[[ left_sep = { "", hl = "UserTLLineSep" }, ]]
+		--[[ right_sep = { "", hl = "UserTLLineSep" }, ]]
 	},
 	top_win = {
 		label = function(winid)
@@ -196,8 +196,8 @@ local line = {
 				hl = "TabLine",
 			}
 		end,
-		left_sep = { "", hl = "UserTLLineSep" },
-		right_sep = { "", hl = "UserTLLineSep" },
+		--[[ left_sep = { "", hl = "UserTLLineSep" }, ]]
+		--[[ right_sep = { "", hl = "UserTLLineSep" }, ]]
 	},
 	win = {
 		label = function(winid)
@@ -206,11 +206,11 @@ local line = {
 				hl = "TabLine",
 			}
 		end,
-		left_sep = { "", hl = "UserTLLineSep" },
-		right_sep = { "", hl = "UserTLLineSep" },
+		--[[ left_sep = { "", hl = "UserTLLineSep" }, ]]
+		--[[ right_sep = { "", hl = "UserTLLineSep" }, ]]
 	},
 	tail = {
-		{ "", hl = "UserTLHeadSep" },
+		--[[ { "", hl = "UserTLHeadSep" }, ]]
 		{ "  ", hl = "UserTLHead" },
 	},
 }
