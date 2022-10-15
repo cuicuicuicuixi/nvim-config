@@ -26,7 +26,7 @@ null_ls.setup({
 				"c",
 				"cpp",
 			},
-			extra_args = { "--style", "{IndentWidth: 4}" },
+			extra_args = { "-style=file" },
 		}),
 		-- diagnostics.flake8,
 		diagnostics.shellcheck,

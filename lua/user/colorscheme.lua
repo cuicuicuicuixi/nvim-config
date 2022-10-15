@@ -1,10 +1,10 @@
-local colorscheme = "tokyonight"
+vim.colorscheme = "tokyonight"
 
 require("tokyonight").setup({
   -- your configuration comes here
   -- or leave it empty to use the default settings
   style = "night", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
-  transparent = false, -- Enable this to disable setting the background color
+  transparent = true, -- Enable this to disable setting the background color
   terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
   styles = {
     -- Style to be applied to different syntax groups
@@ -35,7 +35,7 @@ require("tokyonight").setup({
   on_highlights = function(highlights, colors) end,
 })
 
-local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
+local status_ok, _ = pcall(vim.cmd, "colorscheme " .. vim.colorscheme)
 if not status_ok then
   -- vim.notify("colorscheme " .. colorscheme .. " not found!")
   return
