@@ -153,6 +153,17 @@ return packer.startup(function(use)
 
 	-- Utility
 	use("stevearc/dressing.nvim") -- 匹配 neovim API
+    use("MunifTanjim/nui.nvim")
+    use({
+        "folke/noice.nvim",
+        --[[ config = function() ]]
+        --[[     require("noice").setup() ]]
+        --[[ end, ]]
+        requires = {
+            "MunifTanjim/nui.nvim",
+            "rcarriga/nvim-notify",
+        }
+    })
 	use("rcarriga/nvim-notify")
 	use("lewis6991/impatient.nvim") -- 加速 neovim 加载 lua 模块
 	use("ghillb/cybu.nvim") -- 切换缓冲区

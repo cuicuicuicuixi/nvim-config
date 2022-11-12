@@ -4,6 +4,7 @@ local components = require("user.lualine.components")
 
 local styles = {
 	fvim = nil,
+	lvim = nil,
 	default = nil,
 	none = nil,
 }
@@ -74,8 +75,8 @@ styles.default = {
 	extensions = {},
 }
 
-styles.fvim = {
-	style = "fvim",
+styles.lvim = {
+	style = "lvim",
 	options = {
 		theme = "auto",
 		globalstatus = true,
@@ -96,6 +97,25 @@ styles.fvim = {
 			components.python_env,
 		},
 		lualine_x = {
+			{
+				require("noice").api.status.message.get_hl,
+				cond = require("noice").api.status.message.has,
+			},
+			{
+				require("noice").api.status.command.get,
+				cond = require("noice").api.status.command.has,
+				color = { fg = "#ff9e64" },
+			},
+			{
+				require("noice").api.status.mode.get,
+				cond = require("noice").api.status.mode.has,
+				color = { fg = "#ff9e64" },
+			},
+			{
+				require("noice").api.status.search.get,
+				cond = require("noice").api.status.search.has,
+				color = { fg = "#ff9e64" },
+			},
 			components.diagnostics,
 			components.lsp,
 			components.spaces,
@@ -132,6 +152,65 @@ styles.fvim = {
 	extensions = {},
 }
 
+styles.fvim = {
+	style = "default",
+	options = {
+		theme = "auto",
+		globalstatus = true,
+		icons_enabled = true,
+		component_separators = {
+			left = icons.ui.DividerRight,
+			right = icons.ui.DividerLeft,
+		},
+		section_separators = {
+			left = icons.ui.BoldDividerRight,
+			right = icons.ui.BoldDividerLeft,
+		},
+		disabled_filetypes = {},
+	},
+	sections = {
+		lualine_a = { "mode" },
+		lualine_b = { "branch" },
+		lualine_c = { "filename" },
+		lualine_x = {
+			{
+				require("noice").api.status.message.get_hl,
+				cond = require("noice").api.status.message.has,
+			},
+			{
+				require("noice").api.status.command.get,
+				cond = require("noice").api.status.command.has,
+				color = { fg = "#ff9e64" },
+			},
+			{
+				require("noice").api.status.mode.get,
+				cond = require("noice").api.status.mode.has,
+				color = { fg = "#ff9e64" },
+			},
+			{
+				require("noice").api.status.search.get,
+				cond = require("noice").api.status.search.has,
+				color = { fg = "#ff9e64" },
+			},
+			"encoding",
+			"fileformat",
+			"filetype",
+		},
+		lualine_y = { "progress" },
+		lualine_z = { "location" },
+	},
+	inactive_sections = {
+		lualine_a = {},
+		lualine_b = {},
+		lualine_c = { "filename" },
+		lualine_x = { "location" },
+		lualine_y = {},
+		lualine_z = {},
+	},
+	tabline = {},
+	extensions = {},
+}
+
 function M.get_style(style)
 	local style_keys = vim.tbl_keys(styles)
 	if not vim.tbl_contains(style_keys, style) then
@@ -142,14 +221,14 @@ function M.get_style(style)
 				.. string.format('"%s"', table.concat(style_keys, '", "'))
 		)
 		vim.notify('"vim" style is applied.')
-		style = "fvim"
+		style = "lvim"
 	end
 
 	return vim.deepcopy(styles[style])
 end
 
 function M.update()
-	local style = M.get_style("fvim")
+	local style = M.get_style("lvim")
 
 	Lualine = vim.tbl_deep_extend("keep", Lualine, style)
 
