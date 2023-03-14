@@ -3,70 +3,34 @@ if not status_ok then
     return
 end
 
-
-db.custom_center = {
-    {
-        icon = '  ',
-        desc = 'Recently files              ',
-        action = 'Telescope oldfiles'
+ db.setup({
+    theme = 'hyper',
+    config = {
+      week_header = {
+       enable = true,
+      },
+      shortcut = {
+        { desc = ' Update', group = '@property', action = 'Lazy update', key = 'u' },
+        {
+          icon = ' ',
+          icon_hl = '@variable',
+          desc = 'Files',
+          group = 'Label',
+          action = 'Telescope find_files',
+          key = 'f',
+        },
+        {
+          desc = ' Apps',
+          group = 'DiagnosticHint',
+          action = 'Telescope app',
+          key = 'a',
+        },
+        {
+          desc = ' dotfiles',
+          group = 'Number',
+          action = 'Telescope dotfiles',
+          key = 'd',
+        },
+      },
     },
-    {
-        icon = '  ',
-        desc = 'Book marks                  ',
-        action = 'Telescope marks',
-    },
-    {
-        icon = '  ',
-        desc = 'Find  File                  ',
-        action = 'Telescope find_files',
-    },
-    -- {icon = '  ',
-    -- desc ='File Browser                            ',
-    -- action =  'Telescope file_browser',
-    -- shortcut = 'SPC f b'},
-    { icon = '  ',
-        desc = 'Find  word                  ',
-        action = 'Telescope live_grep',
-    },
-    { icon = '  ',
-        desc = 'Find  projects              ',
-        action = 'Telescope projects',
-    },
-    {
-        icon = '  ',
-        desc = 'config                      ',
-        action = 'e ~/.config/nvim/init.lua',
-    },
-    {
-        icon = '  ',
-        desc = 'quit                        ',
-        action = 'qa',
-    }
-}
-
-db.default_executive = 'telescope'
-
-
-
-db.custom_header = {
-    [[]],
-    [[]],
-    [[      ███████╗██╗  ██╗ █████╗ ███╗   ██╗ ██████╗  ]],
-    [[      ╚══███╔╝██║  ██║██╔══██╗████╗  ██║██╔════╝  ]],
-    [[        ███╔╝ ███████║███████║██╔██╗ ██║██║  ███╗ ]],
-    [[       ███╔╝  ██╔══██║██╔══██║██║╚██╗██║██║   ██║ ]],
-    [[      ███████╗██║  ██║██║  ██║██║ ╚████║╚██████╔╝ ]],
-    [[      ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝  ]],
-    [[   ██╗    ██╗███████╗██╗███████╗███████╗███╗   ██╗ ██████╗ ]],
-    [[   ██║    ██║██╔════╝██║██╔════╝██╔════╝████╗  ██║██╔════╝ ]],
-    [[   ██║ █╗ ██║█████╗  ██║█████╗  █████╗  ██╔██╗ ██║██║  ███╗]],
-    [[   ██║███╗██║██╔══╝  ██║██╔══╝  ██╔══╝  ██║╚██╗██║██║   ██║]],
-    [[   ╚███╔███╔╝███████╗██║██║     ███████╗██║ ╚████║╚██████╔╝]],
-    [[    ╚══╝╚══╝ ╚══════╝╚═╝╚═╝     ╚══════╝╚═╝  ╚═══╝ ╚═════╝ ]],
-    [[]], [[]],
-    [[]], [[]],
-
-
-}
-
-db.custom_footer = { 'hello world' }
+  })
