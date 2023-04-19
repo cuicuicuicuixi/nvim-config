@@ -1,13 +1,13 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -16,7 +16,6 @@ local status_ok, packer = pcall(require, "lazy")
 if not status_ok then
 	return
 end
-
 
 -- Install your plugins here
 return packer.setup({
@@ -45,9 +44,9 @@ return packer.setup({
 	"folke/tokyonight.nvim",
 	"lunarvim/synthwave84.nvim",
 	"rebelot/kanagawa.nvim",
-    'sainnhe/gruvbox-material',
-    'ellisonleao/gruvbox.nvim',
-    {'projekt0n/github-nvim-theme', version="v0.0.7"},
+	"sainnhe/gruvbox-material",
+	"ellisonleao/gruvbox.nvim",
+	{ "projekt0n/github-nvim-theme", version = "v0.0.7" },
 	--[[ "Mofiqul/dracula.nvim", ]]
 
 	-- cmp plugins
@@ -55,7 +54,7 @@ return packer.setup({
 	"hrsh7th/cmp-buffer", -- buffer completions
 	"hrsh7th/cmp-path", -- path completions
 	"hrsh7th/cmp-cmdline",
-    -- cmdline completions
+	-- cmdline completions
 	"saadparwaiz1/cmp_luasnip", -- snippet completions
 	"hrsh7th/cmp-nvim-lsp",
 
@@ -66,7 +65,10 @@ return packer.setup({
 	-- LSP
 	"neovim/nvim-lspconfig", -- enable LSP
 	--[[ "williamboman/nvim-lsp-installer", -- simple to use language server nvim-lsp-installer ]]
-	"williamboman/mason.nvim",
+	{
+		"williamboman/mason.nvim",
+		build = ":MasonUpdate", -- :MasonUpdate updates registry contents
+	},
 	"williamboman/mason-lspconfig.nvim",
 	"tamago324/nlsp-settings.nvim", -- language server settings defined in json for
 	"jose-elias-alvarez/null-ls.nvim", -- for formatters and linters
@@ -131,12 +133,12 @@ return packer.setup({
 	--   branch = 'main'
 	-- }
 
-    "iamcco/markdown-preview.nvim",
+	"iamcco/markdown-preview.nvim",
 
 	-- Utility
 	"stevearc/dressing.nvim", -- 匹配 neovim API
-    "MunifTanjim/nui.nvim",
-    --[[ use({
+	"MunifTanjim/nui.nvim",
+	--[[ use({
         "folke/noice.nvim",
         dependencies = {
             "MunifTanjim/nui.nvim",

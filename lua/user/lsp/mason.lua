@@ -12,7 +12,7 @@ local servers = {
 	--[[ "cssls", ]]
 	--[[ "cssmodules_ls", ]]
 	--[[ "emmet_ls", ]]
-	--[[ "html", ]]
+	"html",
 	--[[ "jdtls", ]]
 	--[[ "jsonls", ]]
 	--[[ "solc", ]]
@@ -20,7 +20,7 @@ local servers = {
 	"lua_ls",
 	--[[ "tflint", ]]
 	--[[ "terraformls", ]]
-	--[[ "tsserver", ]]
+	"tsserver",
 	"pyright",
 	--[[ "yamlls", ]]
 	--[[ "bashls", ]]
@@ -96,21 +96,23 @@ for _, server in pairs(servers) do
 		goto continue
 	end
 
-    if(server == "clangd") then
-        opts.capabilities.offsetEncoding = 'utf-8'
-        lspconfig.clangd.setup {
-            capabilities = opts.capabilities
-        }
-    end
+	if server == "clangd" then
+		opts.capabilities.offsetEncoding = "utf-8"
+		lspconfig.clangd.setup({
+			capabilities = opts.capabilities,
+		})
+	end
 
 	if server == "tsserver" then
 		local tsserver_opts = require("user.lsp.settings.tsserver")
-		opts = vim.tbl_deep_extend("force", tsserver_opts, opts)
+		--[[ opts = vim.tbl_deep_extend("force", tsserver_opts, opts) ]]
+		lspconfig.tsserver.setup({ tsserver_opts })
 	end
 
 	if server == "pyright" then
 		local pyright_opts = require("user.lsp.settings.pyright")
-		opts = vim.tbl_deep_extend("force", pyright_opts, opts)
+		--[[ opts = vim.tbl_deep_extend("force", pyright_opts, opts) ]]
+		lspconfig.pyright.setup({ pyright_opts })
 	end
 
 	--[[  if server == "solc" then

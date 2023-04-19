@@ -1,15 +1,19 @@
 return {
-  cmd = { "py" },
-  settings = {
-    python = {
-      analysis = {
-        typeCheckingMode = "basic",
-        diagnosticMode = "workspace",
-        inlayHints = {
-          variableTypes = true,
-          functionReturnTypes = true,
-        },
-      },
-    },
-  },
+	cmd = { "pyright-langserver", "--stdio" },
+	filetype = { "python" },
+	settings = {
+		python = {
+			analysis = {
+                autoSearchPaths = true,
+				typeCheckingMode = "basic",
+				diagnosticMode = "workspace",
+                useLibraryCodeForTypes = true,
+				inlayHints = {
+					variableTypes = true,
+					functionReturnTypes = true,
+				},
+			},
+		},
+	},
+    single_file_support = true
 }
