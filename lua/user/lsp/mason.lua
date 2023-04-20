@@ -27,6 +27,7 @@ local servers = {
 	"clangd",
 	--[[ "rust_analyzer", ]]
 	--[[ "taplo", ]]
+    "cmake",
 	"zk@v0.10.1",
 	--[[ "lemminx" ]]
 }
@@ -114,6 +115,10 @@ for _, server in pairs(servers) do
 		--[[ opts = vim.tbl_deep_extend("force", pyright_opts, opts) ]]
 		lspconfig.pyright.setup({ pyright_opts })
 	end
+
+    if server == "cmake" then
+        lspconfig.cmake.setup{}
+    end
 
 	--[[  if server == "solc" then
     local solc_opts = require "user.lsp.settings.solc"

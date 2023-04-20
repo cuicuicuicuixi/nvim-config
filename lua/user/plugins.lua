@@ -20,14 +20,32 @@ end
 -- Install your plugins here
 return packer.setup({
 	-- My plugins here
-	"nvim-lua/popup.nvim", -- An implementation of the Popup API from vim in Neovim
+	{ "nvim-lua/popup.nvim", lazy = true }, -- An implementation of the Popup API from vim in Neovim
 	{ "nvim-lua/plenary.nvim", lazy = true }, -- Useful lua functions used ny lots of plugins
-	"christianchiarulli/lua-dev.nvim",
+	{ "christianchiarulli/lua-dev.nvim", lazy = true },
 
-	"windwp/nvim-autopairs", -- Autopairs, integrates with both cmp and treesitter
+	{
+		"windwp/nvim-autopairs",
+		event = { "BufReadPre", "BufNewFile" },
+		config = function()
+			require("user.autopairs")
+		end,
+	}, -- Autopairs, integrates with both cmp and treesitter
 	{ "kyazdani42/nvim-web-devicons", lazy = true },
-	"kyazdani42/nvim-tree.lua",
-	"akinsho/bufferline.nvim",
+	{
+		"kyazdani42/nvim-tree.lua",
+		key = { "<leader>e", "<cmd>NvimTreeToggle", desc = "nvim tree toggle" },
+		config = function()
+			require("user.nvim-tree")
+		end,
+	},
+	{
+		"akinsho/bufferline.nvim",
+		event = { "BufReadPre", "BufNewFile" },
+		config = function()
+			require("user.bufferline")
+		end,
+	},
 	{
 		"nvim-lualine/lualine.nvim",
 		event = "VeryLazy",
@@ -91,40 +109,112 @@ return packer.setup({
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-cmdline",
+            "saadparwaiz1/cmp_luasnip"
 		},
 		config = function()
-			require("cmp")
+			require("user.cmp")
 		end,
 	},
-	"hrsh7th/cmp-buffer", -- buffer completions
-	"hrsh7th/cmp-path", -- path completions
-	"hrsh7th/cmp-cmdline",
+	--[[ { "hrsh7th/cmp-buffer", lazy = true }, -- buffer completions ]]
+	--[[ { "hrsh7th/cmp-path", lazy = true }, -- path completions ]]
+	--[[ { "hrsh7th/cmp-cmdline", lazy = true }, ]]
 	-- cmdline completions
-	"saadparwaiz1/cmp_luasnip", -- snippet completions
-	"hrsh7th/cmp-nvim-lsp",
+	--[[ { "saadparwaiz1/cmp_luasnip", lazy = true }, -- snippet completions ]]
+	--[[ { "hrsh7th/cmp-nvim-lsp", lazy = true }, ]]
 
 	-- snippets
-	"L3MON4D3/LuaSnip", --snippet engine
-	"rafamadriz/friendly-snippets", -- a bunch of snippets to use
+	--[[ "L3MON4D3/LuaSnip", --snippet engine ]]
+	--[[ "rafamadriz/friendly-snippets", -- a bunch of snippets to use ]]
+	{
+		"L3MON4D3/LuaSnip",
+		build = (not jit.os:find("Windows"))
+				and "echo -e 'NOTE: jsregexp is optional, so not a big deal if it fails to build\n'; make install_jsregexp"
+			or nil,
+		dependencies = {
+			"rafamadriz/friendly-snippets",
+			config = function()
+				require("luasnip.loaders.from_vscode").lazy_load()
+			end,
+		},
+		opts = {
+			history = true,
+			delete_check_events = "TextChanged",
+		},
+        -- stylua: ignore
+        keys = {
+            {
+            "<tab>",
+            function()
+              return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
+            end,
+            expr = true, silent = true, mode = "i",
+            },
+            { "<tab>", function() require("luasnip").jump(1) end, mode = "s" },
+            { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
+        },
+	},
 
 	-- LSP
-	"neovim/nvim-lspconfig", -- enable LSP
-	--[[ "williamboman/nvim-lsp-installer", -- simple to use language server nvim-lsp-installer ]]
+	{ "neovim/nvim-lspconfig", lazy = true }, -- enable LSP
 	{
 		"williamboman/mason.nvim",
 		build = ":MasonUpdate", -- :MasonUpdate updates registry contents
+		lazy = true,
 	},
-	"williamboman/mason-lspconfig.nvim",
-	"tamago324/nlsp-settings.nvim", -- language server settings defined in json for
-	"jose-elias-alvarez/null-ls.nvim", -- for formatters and linters
-	"ray-x/lsp_signature.nvim",
-	"lvimuser/lsp-inlayhints.nvim",
+	{ "williamboman/mason-lspconfig.nvim", lazy = true },
+	{ "tamago324/nlsp-settings.nvim", lazy = true }, -- language server settings defined in json for
+	{ "jose-elias-alvarez/null-ls.nvim", lazy = true }, -- for formatters and linters
+	{ "ray-x/lsp_signature.nvim", lazy = true },
+	{
+		"lvimuser/lsp-inlayhints.nvim",
+		event = { "BufReadPost", "BufNewFile" },
+		config = function()
+			require("user.lsp_inlayhints")
+		end,
+	},
 	--[[ "https://git.sr.ht/~whynothugo/lsp_lines.nvim", ]]
 	{
 		"folke/trouble.nvim",
-		dependencies = "kyazdani42/nvim-web-devicons",
+		cmd = { "TroubleToggle", "Trouble" },
+		opts = { use_diagnostic_signs = true },
+		keys = {
+			{ "<leader>xx", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" },
+			{ "<leader>xX", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
+			{ "<leader>xL", "<cmd>TroubleToggle loclist<cr>", desc = "Location List (Trouble)" },
+			{ "<leader>xQ", "<cmd>TroubleToggle quickfix<cr>", desc = "Quickfix List (Trouble)" },
+			{
+				"[q",
+				function()
+					if require("trouble").is_open() then
+						require("trouble").previous({ skip_groups = true, jump = true })
+					else
+						vim.cmd.cprev()
+					end
+				end,
+				desc = "Previous trouble/quickfix item",
+			},
+			{
+				"]q",
+				function()
+					if require("trouble").is_open() then
+						require("trouble").next({ skip_groups = true, jump = true })
+					else
+						vim.cmd.cnext()
+					end
+				end,
+				desc = "Next trouble/quickfix item",
+			},
+		},
 	},
-	"RRethy/vim-illuminate",
+	{
+		"RRethy/vim-illuminate",
+		event = { "BufReadPost", "BufNewFile" },
+		config = function()
+			require("user.illuminate")
+		end,
+	},
 
 	-- Telescope
 	"nvim-telescope/telescope.nvim",
@@ -139,28 +229,50 @@ return packer.setup({
 		end,
 	},
 	{ "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
-	"nvim-treesitter/playground",
+	{ "nvim-treesitter/playground", lazy = true },
 	"p00f/nvim-ts-rainbow",
 	--[[ "kylechui/nvim-surround", ]]
 
 	-- Comment
-	"numToStr/Comment.nvim", -- Easily comment stuff
+	{
+		"numToStr/Comment.nvim",
+		event = { "BufReadPost", "BufNewFile" },
+		config = function()
+			require("user.comment")
+		end,
+	}, -- Easily comment stuff
 	{
 		"danymat/neogen",
 		dependencies = "nvim-treesitter/nvim-treesitter",
 	},
-	"folke/lsp-colors.nvim",
+	{ "folke/lsp-colors.nvim", lazy = true },
 	{
 		"folke/todo-comments.nvim",
 		dependencies = "nvim-lua/plenary.nvim",
+		event = { "BufReadPost", "BufNewFile" },
+		config = function()
+			require("user.todo-comments")
+		end,
 	},
 
 	-- Session
-	"rmagatti/auto-session",
-	"rmagatti/session-lens",
+	{
+		"rmagatti/auto-session",
+		event = { "BufReadPost", "BufNewFile" },
+		config = function()
+			require("user.auto-session")
+		end,
+	},
+	{ "rmagatti/session-lens", lazy = true },
 
 	-- Git
-	"lewis6991/gitsigns.nvim",
+	{
+		"lewis6991/gitsigns.nvim",
+		event = { "BufReadPost", "BufNewFile" },
+		config = function()
+			require("user.gitsigns")
+		end,
+	},
 
 	-- Tagbar
 	"preservim/tagbar",
@@ -170,6 +282,11 @@ return packer.setup({
 	{
 		"SmiteshP/nvim-navic",
 		dependencies = "neovim/nvim-lspconfig",
+		event = { "BufReadPost", "BufNewFile" },
+		config = function()
+			require("user.navic")
+			require("user.winbar")
+		end,
 	},
 
 	-- DashBoard
@@ -245,9 +362,17 @@ return packer.setup({
 			require("user.notify")
 		end,
 	},
-	"lewis6991/impatient.nvim", -- 加速 neovim 加载 lua 模块
-	"ghillb/cybu.nvim", -- 切换缓冲区
-	"moll/vim-bbye", -- 关闭缓冲区但不关闭窗口
+	{
+		"lewis6991/impatient.nvim",
+	},
+	{
+		"ghillb/cybu.nvim",
+		event = { "BufReadPost", "BufNewFile" },
+		config = function()
+			require("user.cybu")
+		end,
+	},
+	{ "moll/vim-bbye", event = { "BufReadPost", "BufNewFile" } },
 
 	-- Debug
 	-- "ravenxrz/DAPInstall.nvim"
@@ -356,7 +481,13 @@ return packer.setup({
 	},
 
 	-- Motion
-	"phaazon/hop.nvim",
+	{
+		"phaazon/hop.nvim",
+		event = { "BufReadPost", "BufNewFile" },
+		config = function()
+			require("user.hop")
+		end,
+	},
 
 	-- Editing Support
 	{
@@ -408,6 +539,9 @@ return packer.setup({
 
 			local animate = require("mini.animate")
 			return {
+				cursor = {
+					enable = false,
+				},
 				resize = {
 					timing = animate.gen_timing.linear({ duration = 100, unit = "total" }),
 				},
@@ -431,7 +565,10 @@ return packer.setup({
 	},
 
 	-- Quick Fix
-	{ "kevinhwang91/nvim-bqf", lazy = true },
+	{
+		"kevinhwang91/nvim-bqf",
+		event = { "BufReadPre", "BufNewFile" },
+	},
 
 	-- Project
 	{
@@ -443,7 +580,13 @@ return packer.setup({
 	},
 
 	-- Code Runner
-	{ "is0n/jaq-nvim", lazy = true },
+	{
+		"is0n/jaq-nvim",
+		event = { "BufReadPre", "BufNewFile" },
+		config = function()
+			require("user.jaq")
+		end,
+	},
 
 	-- Keybinding
 	{

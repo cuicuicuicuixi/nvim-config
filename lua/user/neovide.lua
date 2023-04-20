@@ -13,7 +13,7 @@ if vim.g.neovide then
     vim.g.neovide_hide_mouse_when_typing = false
     vim.g.neovide_refresh_rate = 60
     vim.g.neovide_refresh_rate_idle = 5
-    vim.g.neovide_remember_window_size = true
+    vim.g.neovide_remember_window_size = false
     vim.g.neovide_profiler = false
     vim.g.neovide_cursor_vfx_mode = "railgun"
     vim.g.neovide_cursor_vfx_opacity = 200.0
