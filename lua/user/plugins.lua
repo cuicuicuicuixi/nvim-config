@@ -258,7 +258,6 @@ return packer.setup({
 	-- Session
 	{
 		"rmagatti/auto-session",
-		event = { "BufReadPost", "BufNewFile" },
 		config = function()
 			require("user.auto-session")
 		end,
