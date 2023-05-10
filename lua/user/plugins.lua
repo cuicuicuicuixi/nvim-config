@@ -12,13 +12,13 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, "lazy")
+local status_ok, Lazy = pcall(require, "lazy")
 if not status_ok then
 	return
 end
 
 -- Install your plugins here
-return packer.setup({
+return Lazy.setup({
 	-- My plugins here
 	{ "nvim-lua/popup.nvim", lazy = true }, -- An implementation of the Popup API from vim in Neovim
 	{ "nvim-lua/plenary.nvim", lazy = true }, -- Useful lua functions used ny lots of plugins
@@ -53,7 +53,13 @@ return packer.setup({
 			require("user.lualine").setup()
 		end,
 	},
-	"akinsho/toggleterm.nvim",
+	{
+        "akinsho/toggleterm.nvim",
+		event = "VeryLazy",
+        config = function ()
+            require("user.toggleterm")
+        end
+    },
 
 	-- Color
 	{

@@ -12,7 +12,7 @@ local servers = {
 	--[[ "cssls", ]]
 	--[[ "cssmodules_ls", ]]
 	--[[ "emmet_ls", ]]
-	"html",
+	--[[ "html", ]]
 	--[[ "jdtls", ]]
 	--[[ "jsonls", ]]
 	--[[ "solc", ]]
@@ -20,8 +20,8 @@ local servers = {
 	"lua_ls",
 	--[[ "tflint", ]]
 	--[[ "terraformls", ]]
-	"tsserver",
-	"pyright",
+	--[[ "tsserver", ]]
+	--[[ "pyright", ]]
 	--[[ "yamlls", ]]
 	--[[ "bashls", ]]
 	"clangd",
