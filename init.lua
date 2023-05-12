@@ -1,6 +1,7 @@
+_G.reload = require("user.modules").reload
+
 require("user.impatient")
-require("user.hot-reload")
-require("user.options")
+reload("user.options")
 require("user.keymaps")
 require("user.plugins")
 require("user.autocommands")
