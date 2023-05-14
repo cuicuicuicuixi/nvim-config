@@ -112,16 +112,13 @@ return {
 		cond = conditions.hide_in_width,
 	},
 	lsp = {
-		function(msg)
-			msg = msg or "LS Inactive"
-			local buf_clients = vim.lsp.get_active_clients()
-			if next(buf_clients) == nil then
-				-- TODO: clean up this if statement
-				if type(msg) == "boolean" or #msg == 0 then
-					return "LS Inactive"
-				end
-				return msg
+		function()
+			local buf = vim.api.nvim_get_current_buf()
+			local buf_clients = vim.lsp.get_active_clients(buf)
+			if #buf_clients == 0 then
+                return "LS Inactive"
 			end
+
 			local buf_ft = vim.bo.filetype
 			local buf_client_names = {}
 			local copilot_active = false
@@ -138,12 +135,12 @@ return {
 			end
 
 			-- add formatter
-			local formatters = require("lvim.lsp.null-ls.formatters")
+			local formatters = require("user.lsp.null-ls.formatters")
 			local supported_formatters = formatters.list_registered(buf_ft)
 			vim.list_extend(buf_client_names, supported_formatters)
 
 			-- add linter
-			local linters = require("lvim.lsp.null-ls.linters")
+			local linters = require("user.lsp.null-ls.linters")
 			local supported_linters = linters.list_registered(buf_ft)
 			vim.list_extend(buf_client_names, supported_linters)
 

@@ -48,10 +48,10 @@ return Lazy.setup({
 	},
 	{
 		"nvim-lualine/lualine.nvim",
-		event = "VeryLazy",
-		config = function()
-			require("user.lualine").setup()
-		end,
+		--[[ event = "VeryLazy", ]]
+		--[[ config = function() ]]
+		--[[ 	require("user.lualine").setup() ]]
+		--[[ end, ]]
 	},
 	{
         "akinsho/toggleterm.nvim",

@@ -21,14 +21,14 @@ local servers = {
 	--[[ "tflint", ]]
 	--[[ "terraformls", ]]
 	--[[ "tsserver", ]]
-	--[[ "pyright", ]]
+	"pyright",
 	--[[ "yamlls", ]]
-	--[[ "bashls", ]]
 	"clangd",
 	--[[ "rust_analyzer", ]]
 	--[[ "taplo", ]]
     "cmake",
 	"zk@v0.10.1",
+    "bashls",
 	--[[ "lemminx" ]]
 }
 
@@ -118,6 +118,11 @@ for _, server in pairs(servers) do
 
     if server == "cmake" then
         lspconfig.cmake.setup{}
+    end
+
+    if server == "bashls" then
+        lspconfig.bashls.setup{}
+
     end
 
 	--[[  if server == "solc" then
